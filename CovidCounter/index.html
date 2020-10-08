@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>CoronaCount</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write(decodeURIComponent('%3Cscript src="js/jquery.min.js"%3E%3C/script%3E'))</script>
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/20.1.7/css/dx.common.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/20.1.7/css/dx.light.css" />
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn3.devexpress.com/jslib/20.1.7/js/dx.all.js"></script>
+    <script src="js/covidsp.js"></script>    
+    <script src="js/index.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script> -->
+    <!-- Mapa Google -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT6r3zG_UtKP6x6UnLFBpaz6TEAqvc6js&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+</head>
+
+<body class="dx-viewport">
+    <main>
+        <section class="wallpaper" style="background-image:linear-gradient(to bottom,rgba(0,0,0,.4) 0,rgba(0,0,0,.6) 100%),url(img/wallpaper.jpg)">
+            <div class="container h-100">
+                <div class="row h-100">
+                    <div class="col-md-12 d-flex justify-content-center align-items-center h-100">
+                        <h3>CoronaCount</h3>
+                    </div>
+                </div>
+            </div>
+        </section>  
+        <table>
+            <tr>
+                <td><div style="width: auto;">    
+                    <label>Mês de início</label>  
+                    <select class="form-control" style="width: auto;" id="mesInicio">
+                        <option value="03">Março</option>
+                        <option value="04">Abril</option>
+                        <option value="05">Maio</option>
+                        <option value="06">Junho</option>
+                        <option value="07">Julho</option>
+                        <option value="08">Agosto</option>
+                        <option value="09">Setembro</option>
+                        <option value="10">Outubro</option>
+                        <option value="11">Novembro</option>
+                        <option value="12">Dezembro</option>
+                    </select>
+                </div></td>
+                <td><div>
+                    <label>Último mês</label>  
+                    <select class="form-control" style="width: auto;" id="mesFim">
+                        <option value="03">Março</option>
+                        <option value="04">Abril</option>
+                        <option value="05">Maio</option>
+                        <option value="06">Junho</option>
+                        <option value="07">Julho</option>
+                        <option value="08">Agosto</option>
+                        <option value="09">Setembro</option>
+                        <option value="10">Outubro</option>
+                        <option value="11">Novembro</option>
+                        <option value="12">Dezembro</option>
+                    </select>
+                </div></td>
+                <td><div><label>Estado</label>  
+                    <select class="form-control" style="width: auto;" id="uf">
+                        <option value="12">Acre</option>
+                        <option value="27">Alagoas</option>
+                        <option value="16">Amapá</option>
+                        <option value="13">Amazonas</option>
+                        <option value="29">Bahia</option>
+                        <option value="23">Ceará</option>
+                        <option value="53">Distrito Federal</option>
+                        <option value="32">Espírito Santo</option>
+                        <option value="52">Goiás</option>
+                        <option value="21">Maranhão</option>
+                        <option value="51">Mato Grosso</option>
+                        <option value="50">Mato Grosso do Sul</option>
+                        <option value="31">Minas Gerais</option>
+                        <option value="15">Pará</option>
+                        <option value="25">Paraíba</option>
+                        <option value="41">Paraná</option>
+                        <option value="26">Pernambuco</option>
+                        <option value="22">Piauí</option>
+                        <option value="33">Rio de Janeiro</option>
+                        <option value="24">Rio Grande do Norte</option>
+                        <option value="43">Rio Grande do Sul</option>
+                        <option value="11">Rondônia</option>
+                        <option value="14">Roraima</option>
+                        <option value="42">Santa Catarina</option>
+                        <option value="35">São Paulo</option>
+                        <option value="28">Sergipe</option>
+                        <option value="17">Tocantins</option>
+                    </select>
+                    </div></td>
+                    <td><div><input class="btn-primary" type="submit" value="Aplicar Filtro" onclick="AtualizaDataSource()" style="height: 34px; padding: 6px 12px; font-size: 14px;margin-top: 22px;border-radius: 4px;"/></div></td>
+            </tr>
+        </table>
+        <div class="demo-container">
+            <div id="chart"></div>
+        </div>
+        <!-- Mapa -->
+        <br><br><br><br>
+        <section class="sobre">
+            <div class="container-fluid">
+                <div class="col-md-6">
+                    <div class="titulo">
+                        <h2>Sobre</h2>
+                    </div>
+                    <div class="texto">
+                        <p>Criado em 2020 e localizado em São Paulo, o CoronaCount é um software responsável pela contabilização do COVID-19, onde o usuário poderá ficar por dentro dos números de casos e mortes confirmadas nos estados Brasileiros, podendo assim realizar uma comparação de meses para viabilizar a análise da evolução de contágio no estado em específico.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div id="mapaDev"></div>
+                    <div class="legendaMapa text-center">
+                        <span>Localização CoronaCount</span>
+                    </div>
+                </div>
+            </div>
+        </section>       
+    </main>
+</body>
+<script>
+    function AtualizaDataSource() {
+        dataSource = RetornarPorEstado();
+
+        AtualizaGraficos();
+    }
+</script>
+</html>
